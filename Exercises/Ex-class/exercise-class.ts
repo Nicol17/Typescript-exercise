@@ -13,7 +13,7 @@ const Exercise5 = () => {
   // • Add explicit return type to the greet method
 
   class MC {
-    greet(event = 'party') {
+    greet(event: string = 'party'): string {
       return `Welcome to the ${event}`
     }
   }
@@ -27,7 +27,7 @@ const Exercise5 = () => {
   // • Add typed parameters for storing values
 
   class Person {
-    constructor(name, age) {
+    constructor(public name: string, protected age: number) {
       this.name = name
       this.age = age
     }
@@ -43,9 +43,7 @@ const Exercise5 = () => {
   // • Reduce class to three lines of code while maintaining functionality
 
   class Employee {
-    title: string
-    salary: number
-    constructor(title: string, salary: number) {
+    constructor(public title: string, public salary: number) {
       this.title = title
       this.salary = salary
     }
