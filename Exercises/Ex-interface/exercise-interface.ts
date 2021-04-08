@@ -13,7 +13,13 @@ const Exercise2 = () => {
   // • Create an interface `CartItem` and replace the param's type with it
   // • Make variantId optional
 
-  function addToCart(item: { id: number; title: string; variantId: number }) {
+  interface CartItem { 
+    id: number; 
+    title: string; 
+    variantId?: number 
+  }
+
+  function addToCart(item: CartItem) {
     console.log('[Exercise 2.1]', `Adding "${item.title}" to cart.`)
   }
 
@@ -24,7 +30,12 @@ const Exercise2 = () => {
   // • Create and implement an interface on `Person` to ensure it always has accessible
   //   `name` and `age` member properties.
 
-  class Person {
+  interface Person {
+    name: string;
+    age: number;
+  }
+
+  class Person implements Person {
     constructor(public name: string, public age: number) {}
   }
 
@@ -39,11 +50,31 @@ const Exercise2 = () => {
   //   `coords` property of type `Coords`.
   // • Fix whatever is wrong with `tampa`
 
+  //--------------------------------------------------------------------
+  //--------------------------------------------------------------------
+  //--------------------------------------------------------------------
+  //--------------------Please do not edit from here--------------------
   // [do not edit] (pretend this is coming from external `foo.d.ts` lib)
   interface City {
     name: string
   }
-  // [/do not edit]
+  //-----------------------[/do not edit]-------------------------------
+  //--------------------------------------------------------------------
+  //--------------------------------------------------------------------
+  //--------------------------------------------------------------------
+
+  interface Coords {
+    latitude: number;
+    longitude: number;
+  }
+
+  // interface Place extends City{
+  //   coords: Coords
+  // }
+
+  interface City{
+    coords: Coords
+  }
 
   const montreal = {
     coords: {
@@ -55,11 +86,14 @@ const Exercise2 = () => {
 
   const tampa = {
     coords: {
-      latitude: '27.9478',
-      longitude: '-82.4584',
+      latitude: 27.9478,
+      longitude: -82.4584,
     },
     name: 'Tampa',
   }
+
+  // (string | number) // union
+  // (string & number) //intersection
 
   function getCityInfo(city: City) {
     const coords = `(${city.coords.latitude.toFixed(
@@ -90,7 +124,7 @@ const Exercise2 = () => {
   console.log(user.id) // readable
 
   user.name = 'Harold' // writable
-  user.id = 5 // not writable
+  // user.id = 5 // not writable
 
   console.log(`User:`, user)
 }
